@@ -3,6 +3,7 @@ public final static int NUM_COLS = 20;
 public final static int NUM_ROWS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList<MSButton>();
+boolean lose = false;
 int Bo = 20;
 void setup ()
 {
@@ -39,11 +40,8 @@ public void setBombs()
 
 public void draw ()
 {
-    background(0);
-    if(isWon())
-    {
-        displayWinningMessage();
-    }
+    // background(0);
+
 }
 public boolean isWon()
 {
@@ -113,6 +111,7 @@ public class MSButton
         }
         else if(bombs.contains(this))
         {
+            lose = true;
             displayLosingMessage();
         }
         else if(countBombs(r,c) > 0)
@@ -165,10 +164,17 @@ public class MSButton
             fill( 200 );
         else 
             fill( 100 );
-
         rect(x, y, width, height);
         fill(0);
         text(label,x+width/2,y+height/2);
+        if(lose)
+        {
+            background(0);
+            fill(255);
+            stroke(255);
+            strokeWeight(20);
+            text("You lose!",200,200);
+        }
     }
     public void setLabel(String newLabel)
     {
