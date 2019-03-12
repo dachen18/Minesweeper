@@ -60,7 +60,12 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-    background(0);
+     background(0);
+     fill(255);
+     stroke(255);
+     strokeWeight(20);
+     text("You lose!",200,200 );
+     text("Refresh the page to play again",205,250);
 }
 public void displayWinningMessage()
 {
@@ -161,19 +166,15 @@ public class MSButton
         else if(clicked && bombs.contains(this)) 
             fill(255,0,0);
         else if(clicked)
-            fill( 200 );
+            fill(200);
         else 
-            fill( 100 );
+            fill(100);
         rect(x, y, width, height);
         fill(0);
         text(label,x+width/2,y+height/2);
-        if(lose)
+        if (lose)
         {
-            background(0);
-            fill(255);
-            stroke(255);
-            strokeWeight(20);
-            text("You lose!",200,200);
+            displayLosingMessage();
         }
     }
     public void setLabel(String newLabel)
